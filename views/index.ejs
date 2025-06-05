@@ -81,28 +81,36 @@
       align-items: center;
       position: relative;
       z-index: 10;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
     .header-logo {
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 900;
       color: white;
+      flex: 1;
     }
 
     .header-logo span {
       color: #38bdf8;
     }
 
-    /* Container for buttons - flex row with spacing */
-    .header-buttons {
-      display: flex;
-      gap: 1rem; /* space between buttons */
-      align-items: center;
+    @media (min-width: 640px) {
+      .header-logo {
+        font-size: 2rem;
+      }
     }
 
-    /* Buttons style */
+    .header-buttons {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
     .login-btn, .register-btn {
-      padding: 0.6rem 1.5rem; /* increased horizontal padding */
+      padding: 0.6rem 1.5rem;
       border-radius: 9999px;
       font-weight: 600;
       font-size: 0.875rem;
@@ -112,7 +120,7 @@
       border: 2px solid transparent;
       transition: all 0.3s ease;
       cursor: pointer;
-      white-space: nowrap; /* prevent button text wrapping */
+      white-space: nowrap;
     }
 
     .login-btn {
@@ -250,7 +258,7 @@
 
     <!-- Image -->
     <div class="hero-image">
-      <img src="https://img.freepik.com/free-vector/uploading-concept-illustration_114360-2253.jpg?uid=R142774159&ga=GA1.1.329205931.1731774205&semt=ais_items_boosted&w=740" alt="Upload illustration" />
+      <img src="https://img.freepik.com/free-vector/uploading-concept-illustration_114360-2253.jpg" alt="Upload illustration" />
     </div>
   </main>
 
