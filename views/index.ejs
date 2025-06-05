@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CloudNest - Your Personal Cloud Storage</title>
+
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <script src="https://kit.fontawesome.com/4b59a6c41e.js" crossorigin="anonymous"></script>
+
+  <style>
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #0f172a, #1e293b);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .blob {
+      position: absolute;
+      filter: blur(100px);
+      opacity: 0.25;
+      border-radius: 50%;
+      animation: blobMove 25s infinite;
+      z-index: 0;
+      mix-blend-mode: screen;
+    }
+
+    .blob1 {
+      width: 400px;
+      height: 400px;
+      background: #0ea5e9;
+      top: -100px;
+      left: -80px;
+    }
+
+    .blob2 {
+      width: 450px;
+      height: 450px;
+      background: #facc15;
+      top: 250px;
+      right: -100px;
+    }
+
+    .blob3 {
+      width: 300px;
+      height: 300px;
+      background: #6366f1;
+      bottom: 60px;
+      left: 40%;
+      transform: translateX(-50%);
+    }
+
+    @keyframes blobMove {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(20px, -30px) scale(1.1); }
+      66% { transform: translate(-25px, 20px) scale(0.95); }
+    }
+
+    .header {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 0 0 1rem 1rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .header-logo {
+      font-size: 2rem;
+      font-weight: 900;
+      color: white;
+    }
+
+    .header-logo span {
+      color: #38bdf8;
+    }
+
+    /* Container for buttons - flex row with spacing */
+    .header-buttons {
+      display: flex;
+      gap: 1rem; /* space between buttons */
+      align-items: center;
+    }
+
+    /* Buttons style */
+    .login-btn, .register-btn {
+      padding: 0.6rem 1.5rem; /* increased horizontal padding */
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      white-space: nowrap; /* prevent button text wrapping */
+    }
+
+    .login-btn {
+      background-color: #38bdf8;
+      color: #0f172a;
+      border-color: transparent;
+    }
+
+    .login-btn:hover {
+      background-color: transparent;
+      color: #38bdf8;
+      border-color: #38bdf8;
+    }
+
+    .register-btn {
+      background-color: transparent;
+      color: white;
+      border-color: white;
+    }
+
+    .register-btn:hover {
+      background-color: white;
+      color: #0f172a;
+    }
+
+    .hero {
+      max-width: 1280px;
+      margin: auto;
+      padding: 5rem 1.5rem 3rem;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 3rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    @media (min-width: 1024px) {
+      .hero {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 6rem 3rem;
+      }
+    }
+
+    .hero-text {
+      text-align: center;
+      max-width: 600px;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-text {
+        text-align: left;
+      }
+    }
+
+    .hero-text h1 {
+      font-size: 2.7rem;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text h1 span {
+      color: #38bdf8;
+    }
+
+    .hero-text p {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 1.125rem;
+      margin-bottom: 2rem;
+      line-height: 1.75rem;
+    }
+
+    .hero-text a {
+      background-color: #38bdf8;
+      color: #0f172a;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .hero-text a:hover {
+      background-color: #0573a2;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 480px;
+      border-radius: 1rem;
+      box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.1);
+    }
+
+    .footer {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.875rem;
+      padding: 2rem 1rem 1rem;
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background blobs -->
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-logo">Cloud<span>Nest</span></div>
+    <div class="header-buttons">
+      <a href="/user/login" class="login-btn">
+        <i class="fas fa-sign-in-alt"></i> Login
+      </a>
+      <a href="/user/register" class="register-btn">
+        <i class="fas fa-user-plus"></i> Register
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="hero">
+    <!-- Text -->
+    <div class="hero-text">
+      <h1>Your Secure <span>Cloud Storage</span></h1>
+      <p>Upload, access, and manage your files anytime from anywhere — safe, fast, and private with CloudNest.</p>
+      <a href="/user/register">Get Started</a>
+    </div>
+
+    <!-- Image -->
+    <div class="hero-image">
+      <img src="https://img.freepik.com/free-vector/uploading-concept-illustration_114360-2253.jpg?uid=R142774159&ga=GA1.1.329205931.1731774205&semt=ais_items_boosted&w=740" alt="Upload illustration" />
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 <strong>CloudNest</strong>. All rights reserved.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+  </head>
+  <body class="bg-blue-900 dark:bg-blue-950 min-h-screen">
+    
+    <!-- Top Navbar -->
+    <nav class="bg-white dark:bg-gray-900 border-b p-4 flex justify-between items-center shadow-md">
+      <h1 class="text-xl font-bold text-gray-800 dark:text-white">MyDrive</h1>
+      <button onclick="showPopUp()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition">
+        <i class="ri-upload-2-line"></i> Upload
+      </button>
+      <a href="/user/logout" 
+         class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition">
+         Logout
+      </a>
+    </nav>
+
+    <!-- Upload Modal -->
+    <div class="pop hidden fixed top-0 left-0 h-screen w-screen bg-black bg-opacity-40 flex items-center justify-center z-50">
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg relative w-[90%] max-w-md sm:max-w-lg">
+        <form action="/upload-file" method="post" enctype="multipart/form-data" class="space-y-4">
+          <div>
+            <label for="dropzone-file" class="block text-sm font-medium text-gray-700 dark:text-white mb-2">Choose file</label>
+            <label for="dropzone-file"
+              class="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray-400 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+              <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                <i class="ri-upload-cloud-line text-4xl text-gray-500 mb-2"></i>
+                <p class="text-sm text-gray-500 dark:text-gray-300">Click to upload or drag and drop</p>
+              </div>
+              <input id="dropzone-file" type="file" class="hidden" name="file" required />
+            </label>
+          </div>
+          <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Upload File</button>
+        </form>
+        <button onclick="hidePopUp()" class="absolute top-3 right-3 text-gray-500 dark:text-gray-300 text-xl" aria-label="Close upload modal">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- File List -->
+    <section class="p-6">
+      <h2 class="text-2xl font-semibold text-gray-200 dark:text-white mb-4">Your Files</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <% files.forEach((file) => { %>
+          <div class="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-md flex justify-between items-center">
+            <div>
+              <h3 class="text-md font-medium text-gray-900 dark:text-white truncate w-40" title="<%= file.originalname %>"><%= file.originalname %></h3>
+            </div>
+            <div class="flex gap-4 items-center">
+              <a href="/download/<%= file._id %>" class="text-blue-600 hover:text-blue-800 text-lg" title="Download">
+                <i class="ri-download-2-line"></i>
+              </a>
+              <button onclick="deleteFile('<%= file._id %>')" class="text-red-600 hover:text-red-800 text-lg" title="Delete">
+                <i class="ri-delete-bin-line"></i>
+              </button>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </section>
+
+    <!-- JS -->
+    <script>
+      function showPopUp() {
+        document.querySelector('.pop').classList.remove('hidden');
+      }
+
+      function hidePopUp() {
+        document.querySelector('.pop').classList.add('hidden');
+      }
+
+      // Close modal when clicking outside the form
+      document.querySelector('.pop').addEventListener('click', function(e) {
+        if (e.target === this) hidePopUp();
+      });
+
+      function deleteFile(fileId) {
+        if (confirm("Are you sure you want to delete this file?")) {
+          fetch(`/delete/${fileId}`, {
+            method: 'DELETE'
+          })
+          .then(res => {
+            if (res.ok) {
+              alert('File deleted successfully!');
+              location.reload();
+            } else {
+              alert('Failed to delete file.');
+            }
+          })
+          .catch(err => {
+            console.error(err);
+            alert('An error occurred.');
+          });
+        }
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+  </body>
+</html>
