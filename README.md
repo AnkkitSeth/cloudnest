@@ -66,7 +66,7 @@ Here are some views of CloudNest in action:
 
 1. **Clone the repository:**
    ```bash
-  git clone <https://github.com/AnkkitSeth/cloudnest>
+   git clone <https://github.com/AnkkitSeth/cloudnest>
    cd cloudnest
    ```
 2. **Install dependencies:**
