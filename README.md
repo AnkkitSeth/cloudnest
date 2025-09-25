@@ -24,6 +24,12 @@ It is designed as a lightweight alternative to platforms like Google Drive or Dr
 | Auth        | Session-based Auth      |
 | Deployment  | (e.g., Render)   |
 
+## Live Demo
+Check out the live project here: [CloudNest Live](https://cloudnest-xdc5.onrender.com/)
+
+## Demo Video
+
+
 ## Screenshots
 Here are some views of CloudNest in action:
 
@@ -33,12 +39,32 @@ Here are some views of CloudNest in action:
 - **Upload Dashboard**  
   ![Dashboard](./docs/dashboard.png)
 
-- **File List & Actions**  
-  ![File Management](./docs/filelist.png)
-
 ## Video Demo
 Watch the full walkthrough of CloudNest here:  
-[![CloudNest Demo](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtu.be/VIDEO_ID)
+[![CloudNest Demo](https://img.youtube.com/vi/tfdIUjHBly8?si=pFqbJs7mMWR3Td9K/0.jpg)](https://youtu.be/tfdIUjHBly8?si=pFqbJs7mMWR3Td9K)
+
+## System Design & Diagrams
+
+### ER Diagram
+<img src="./docs/er-diagram.png" alt="ER Diagram" width="200">
+
+### Level 0 DFD
+<img src="./docs/dfd-L0.png" alt="Level 0 DFD" width="600">
+
+### Level 1 DFD
+<img src="./docs/dfd-L1.png" alt="Level 1 DFD" width="600">
+
+### Use Case Diagram
+<img src="./docs/usecase-diagram.png" alt="Use Case Diagram" width="900">
+
+### System Architecture
+<img src="./docs/system-architecture.png" alt="System Architecture" width="200">
+
+### Sequence Diagram
+<img src="./docs/sequence-diagram.png" alt="Sequence Diagram" width="500">
+
+### Class Diagram
+<img src="./docs/class-diagram.png" alt="Class Diagram" width="200">
 
 ## Getting Started
 
